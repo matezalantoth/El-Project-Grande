@@ -3,9 +3,10 @@ import QuestionsElement from "./QuestionsElement.jsx";
 import AnswersElement from "./AnswersElement.jsx";
 import {useCookies} from 'react-cookie';
 import {useNavigate} from 'react-router-dom';
+import {CheckIfSessionExpired} from "../../CheckIfSessionExpired.jsx";
 
 
-export default function ProfilePage() {
+export default function ProfilePage({setUserLoginCookies}) {
     const [user, setUser] = useState(null)
     const [selectedTab, setSelectedTab] = useState(null)
     const navigate = useNavigate();
@@ -37,6 +38,8 @@ export default function ProfilePage() {
 
     }, [cookies])
 
+    CheckIfSessionExpired(setUserLoginCookies);
+
     return user ? (
             <div className="Users bg-gray-50 min-h-screen p-8">
                 <div className="user bg-white p-8 rounded-xl shadow-lg max-w-md mx-auto flex flex-col items-center">
@@ -61,7 +64,7 @@ export default function ProfilePage() {
 
                         <button
                             className="mt-6 bg-blue-500 text-white py-2 px-6 rounded-lg shadow hover:bg-blue-600 transition duration-300 w-full"
-                            onClick={() => navigate('/editPage')}
+                            onClick={() => navigate('/EditPage')}
                         >
                             Edit Profile
                         </button>

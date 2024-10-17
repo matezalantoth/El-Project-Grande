@@ -5,7 +5,9 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faFeather, faX} from "@fortawesome/free-solid-svg-icons";
 import {QuestionForm} from "./QuestionForm.jsx";
 import {useCookies} from "react-cookie";
+import {toast} from "react-hot-toast";
 import ShareButton from "../../components/ShareButton/ShareButton.jsx";
+
 
 export default function QuestionComponent({
                                               question, setQuestion, isAdmin, user, renderForm, setRenderForm
@@ -20,8 +22,14 @@ export default function QuestionComponent({
                 'Authorization': "Bearer " + cookies.user
             }
         })
+        const data = await res.json()
+        if (data.message) {
+            toast.error(data.message);
+            return;
+        }
         navigate('/');
     }
+
 
     return (
         <div className="w-3/4 min-h-40 mx-auto mt-12 p-6"> {

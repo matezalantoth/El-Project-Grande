@@ -6,7 +6,7 @@ import {SignupPage} from "./Pages/SignUp/SignUpPage.jsx";
 import ProfilePage from "./Pages/User/ProfilePage.jsx";
 
 
-import WelcomePage from './Pages/Welcome/WelcomePage'
+import WelcomePage from './Pages/WelcomePage/WelcomePage'
 import Navbar from './components/navbar/Navbar'
 import {Toaster} from "react-hot-toast";
 import {LoginPage} from "./Pages/LogIn/LogIn.jsx";
@@ -16,6 +16,9 @@ import QuestionPage from "./Pages/SingleQuestion/QuestionPage.jsx";
 import AskQuestion from "./Pages/AskQuestion/AskQuestion.jsx";
 import PublicUser from "./Pages/User/PublicUser.jsx";
 import AdminPage from "./Pages/Admin/AdminPage.jsx";
+
+import UpdateProfile from "./Pages/User/UpdateProfile.jsx";
+
 import TagsPage from "./Pages/TagsPage/TagsPage.jsx";
 import TagPage from "./Pages/TagsPage/TagPage.jsx";
 
@@ -41,18 +44,23 @@ export default function App() {
                         <Route path="/"
                                element={<WelcomePage searchQuestion={searchQuestion} normalQuestion={normalQuestion}
                                                      setNormalQuestion={setNormalQuestion}
-                                                     setsearchQuestion={setsearchQuestion}/>}/>
+                                                     setsearchQuestion={setsearchQuestion}
+                                                     setUserLoginCookies={setUserLoginCookies}/>}/>
                         <Route path="/signup"
-                               element={<SignupPage cookies={cookies} setUserLoginCookies={setUserLoginCookies}/>}/>
+                               element={<SignupPage setUserLoginCookies={setUserLoginCookies}/>}/>
                         <Route path="/login"
-                               element={<LoginPage cookies={cookies} setUserLoginCookies={setUserLoginCookies}/>}/>
-                        <Route path="/askquestion" element={<AskQuestion cookies={cookies} tags={tags}/>}/>
-                        <Route path="/profile"
-                               element={<ProfilePage cookies={cookies} setUserLoginCookies={setUserLoginCookies}/>}/>
-                        <Route path='question/:questionId' element={<QuestionPage cookies={cookies}/>}/>
-                        <Route path='/user/:userName' element={<PublicUser/>}/>
-                        <Route path='/admin' element={<AdminPage cookies={cookies}/>}/>
-                        <Route path='/tags' element={<TagsPage cookies={cookies} tags={tags} setTags={setTags}/>}/>
+                               element={<LoginPage setUserLoginCookies={setUserLoginCookies}/>}/>
+                        <Route path="/askquestion" element={<AskQuestion setUserLoginCookies={setUserLoginCookies}/>}/>
+                        <Route path="/profile" element={<ProfilePage setUserLoginCookies={setUserLoginCookies}/>}/>
+                        <Route path='/EditPage'
+                               element={<UpdateProfile cookies={cookies} setUserLoginCookies={setUserLoginCookies}/>}/>
+                        <Route path='question/:questionId'
+                               element={<QuestionPage setUserLoginCookies={setUserLoginCookies}/>}/>
+                        <Route path='/user/:userName'
+                               element={<PublicUser setUserLoginCookies={setUserLoginCookies}/>}/>
+                        <Route path='/admin' element={<AdminPage setUserLoginCookies={setUserLoginCookies}/>}/>
+                        <Route path='/tags' element={<TagsPage tags={tags} setTags={setTags}
+                                                               setUserLoginCookies={setUserLoginCookies}/>}/>
                         <Route path='tag/:tagId' element={<TagPage cookies={cookies}/>}/>
                     </Routes>
                     <Toaster/>

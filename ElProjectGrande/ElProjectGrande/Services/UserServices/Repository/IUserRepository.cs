@@ -43,9 +43,13 @@ public interface IUserRepository
 
     public ValueTask<User> UnBanUserByUsername(string username);
 
-    public IEnumerable<UserDTO> GetUsersWithSimilarUsernames(string usernameSubstring);
+    public IEnumerable<string> GetUsersWithSimilarUsernames(string usernameSubstring);
 
     public bool IsUserAdmin(User user);
 
     public bool IsUserAdmin(string userId);
+
+    public Task UpdateUser(User user, string? password);
+
+    public Task<bool> VerifyUser(User user, string password);
 }
